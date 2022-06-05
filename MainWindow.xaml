@@ -1,0 +1,67 @@
+﻿<Window x:Class="Toolsy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Toolsy"
+        mc:Ignorable="d"
+        Title="Toolsy" Height="450" Width="400" WindowStartupLocation="CenterScreen">
+    <StackPanel Orientation="Vertical">
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Name="btnSettings" Click="btnSettings_Click" ToolTip="Open settings">
+                    <Image Source="pack://application:,,,/Images/cog.png" Width="16" Height="16"/>
+                </Button>
+                <Button Name="btnRefresh" Click="btnRefresh_Click" ToolTip="Refresh data with JSON input">
+                    <Image Source="pack://application:,,,/Images/arrow_refresh.png" Width="16" Height="16"/>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <TextBlock Name="txtError" Foreground="Red" HorizontalAlignment="Center" />
+        <ItemsControl Name="lbTiles" ItemsSource="{Binding Tiles}">
+            <ItemsControl.Template>
+                <ControlTemplate TargetType="ItemsControl">
+                    <Border BorderBrush="White" BorderThickness="1" CornerRadius="15">
+                        <ItemsPresenter/>
+                    </Border>
+                </ControlTemplate>
+            </ItemsControl.Template>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel >
+                        <WrapPanel.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Margin" Value="5,5" />
+                                <Setter Property="Padding" Value="5,5" />
+                            </Style>
+                        </WrapPanel.Resources>
+                    </WrapPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Name}" Click="Button_Click" Padding="16" FontSize="18" FontWeight="Bold" Cursor="Hand" ToolTip="{Binding Description}" BorderBrush="{x:Null}">
+                        <Button.Background>
+                            <Binding Path=".">
+                                <Binding.Converter>
+                                    <local:ColorConverter />
+                                </Binding.Converter>
+                            </Binding>
+                        </Button.Background>
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="7"/>
+                                <Setter Property="BorderBrush" Value="White"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Made with " />
+            <Image Source="pack://application:,,,/Images/heart.png" Width="16" Height="16"/>
+            <TextBlock Text=" by Antoine DAUTRY" />
+        </StackPanel>
+    </StackPanel>
+</Window>
