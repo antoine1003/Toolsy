@@ -17,7 +17,7 @@
                 </Button>
             </ToolBar>
         </ToolBarTray>
-        <TextBlock Name="txtError" Foreground="Red" HorizontalAlignment="Center" />
+        <TextBlock Name="txtError" Foreground="Red" HorizontalAlignment="Center" Width="375" TextWrapping="WrapWithOverflow"/>
         <ItemsControl Name="lbTiles" ItemsSource="{Binding Tiles}">
             <ItemsControl.Template>
                 <ControlTemplate TargetType="ItemsControl">

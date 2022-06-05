@@ -25,6 +25,7 @@ namespace Toolsy.Services
                     },
                     'type': {
                       'type': 'string',
+                      'enum':['link', 'folder', 'file'],
                     },
                     'value': {
                       'type': ['string', 'array'],
